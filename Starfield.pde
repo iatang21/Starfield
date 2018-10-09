@@ -1,15 +1,48 @@
-//your code here
+NormalParticle[] starfield;
 void setup()
 {
-	//your code here
+	size(600,600);
+	background(0);
+	starfield = new NormalParticle[300];
+	for(int i=0; i<starfield.length;i++)
+		starfield[i] = new NormalParticle();
+
 }
 void draw()
-{
-	//your code here
+{	
+	background(0);
+	for(int i=0;i<starfield.length;i++)
+	{
+		starfield[i].move();
+		starfield[i].show();
+	}
+
 }
 class NormalParticle
 {
-	//your code here
+	double myX, myY, myAngle, mySpeed;
+	int myColor;
+
+	NormalParticle()
+	{
+		myX = 300;
+		myY = 300;
+		myAngle = Math.random()*2 *Math.PI;
+		mySpeed = Math.random()*10;
+		myColor = color(255,255,255);
+	}
+
+	void move()
+	{
+		myX = myX + Math.cos(myAngle)*mySpeed;
+		myY = myY + Math.sin(myAngle)*mySpeed;	
+	}
+
+	void show()
+	{	
+		ellipse((float)myX,(float)myY,10,10);
+	}
+	
 }
 interface Particle
 {
